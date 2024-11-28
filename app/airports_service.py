@@ -3,6 +3,7 @@ from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 import pandas as pd
 import logging
+import re
 
 @dataclass
 class Location:
@@ -24,6 +25,8 @@ class AirportsService:
         self.geolocator = Nominatim(user_agent="airport_locator")
     
     def _get_location_by_city(self, city_name: str) -> Location:
+        if re.fullmatch(r"\d*", city_name):
+            raise ValueError(f"{city_name} is not a valid city name!")
         location = self.geolocator.geocode(city_name)
         if not location:
             raise ValueError(f"City '{city_name}' not found!")
@@ -34,8 +37,9 @@ class AirportsService:
         )
 
     def _get_location_by_postal_code(self, postal_code: str) -> Location:
-        location = self.geolocator.geocode(f"{postal_code}, Deutschland")     
-        if not location:
+        search_query = f"{postal_code}, Deutschland"
+        location = self.geolocator.geocode(search_query)
+        if not location or not location.address.endswith(", Deutschland"):
             raise ValueError(f"Postal code '{postal_code}' not found!")
         return Location(
             latitude=location.latitude,
