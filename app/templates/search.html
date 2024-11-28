@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+{% block content %}
+<a class="backlink" href="{{ url_for('index') }}">Back</a>
+<h1>Suche nach: {{ searched_for }}</h1>
+<div class="content">
+    <p>{{ airports_amount }} nächstgelegene Flughäfen zu
+        <a href="https://www.google.com/maps/search/{{ found_address | replace(' ', '+') }}" target="_blank">
+            {{ found_address }}
+        </a>
+    </p>
+    {{ table_html|safe }}
+</div>
+{% if city %}
+<p>city {{ city }}</p>
+{% endif %}
+
+{% endblock %}

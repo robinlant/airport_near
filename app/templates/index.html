@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul class="flash-msg-container">
+        {% for message in messages %}
+            <li class="flash-msg-item">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.city.label }}<br>
+        {{ form.city(size=32) }}
+        {% for err in form.city.errors %}
+        <br><span class="error">[{{ err }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.postal_code.label }}<br>
+        {{ form.postal_code(size=5) }}
+        {% for err in form.postal_code.errors %}
+        <br><span class="error">[{{ err }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.amount.label }}<br>
+        {{ form.amount() }}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+
+{% endblock %}
