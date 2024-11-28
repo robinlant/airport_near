@@ -79,6 +79,3 @@ The application supports the following configuration options via environment var
 
 ## Data Attribution
 This project uses the airport data provided by [OurAirports](https://ourairports.com/data/).
-
-## License
-This project is released into the **Public Domain**. You are free to use, modify, and distribute it without any restrictions. Attribution is appreciated but not required.
