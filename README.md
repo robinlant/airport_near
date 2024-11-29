@@ -21,6 +21,13 @@ The airport data is based on the [OurAirports](https://davidmegginson.github.io/
 ## Installation and Usage
 
 ### 1. **Run with Docker**
+
+#### Clone the repository and navigate to the project directory:
+```bash
+git clone git@github.com:robinlant/airport_near.git
+cd airport_near
+```
+
 #### Build the Docker Image
 ```bash
 docker build -t airport-finder .
@@ -64,8 +71,8 @@ The application supports the following configuration options via environment var
 ## Development Setup (Without Docker)
 1. Clone the repository and navigate to the project directory:
    ```bash
-   git clone <repository-url>
-   cd airport-finder
+   git clone git@github.com:robinlant/airport_near.git
+   cd airport_near
    ```
 2. Install dependencies:
    ```bash
